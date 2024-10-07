@@ -13,6 +13,11 @@ GameObject:
   - component: {fileID: 1965749752613046532}
   - component: {fileID: 646091644581045040}
   - component: {fileID: 8065503282958894922}
+  - component: {fileID: 793945254273041517}
+  - component: {fileID: 6268315008357011686}
+  - component: {fileID: 424311988383748299}
+  - component: {fileID: 4917793820685682637}
+  - component: {fileID: -7763301393077371188}
   - component: {fileID: 4243669311251762949}
   m_Layer: 0
   m_Name: SpellBook
@@ -56,9 +61,17 @@ MonoBehaviour:
     prefab: {fileID: 3867830314273112763, guid: 921c5bd33ca51524a9ecc1f96e971f86, type: 3}
   - projName: WindProjectile(WWW)
     prefab: {fileID: 8129133148695955967, guid: c14a0da4104c16946b8fe273f01a33e8, type: 3}
+  - projName: ArcFireProjectile(EEW)
+    prefab: {fileID: 3867830314273112763, guid: 7a0b94b9b9f20b643bb97f403146135f, type: 3}
+  - projName: FireBlast(WWE)
+    prefab: {fileID: 3867830314273112763, guid: ee9b2287b91292d43a2cd806312c75e1, type: 3}
+  - projName: ManaLeech(QWW)
+    prefab: {fileID: 3867830314273112763, guid: 381f575fdef6c3447a583557382ecde6, type: 3}
   shields:
   - shieldName: Reflect(QWE)
     prefab: {fileID: 5750021922835911191, guid: 42b434a7c4692bb4191a4d1def5fac10, type: 3}
+  - shieldName: Absorb(QQQ)
+    prefab: {fileID: 5750021922835911191, guid: 029e0d771e3d3b74b9db41b9b40ec6a2, type: 3}
 --- !u!114 &1965749752613046532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  manaCost: 5
+  manaCost: 3
   onCd: 0
 --- !u!114 &646091644581045040
 MonoBehaviour:
@@ -87,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 4
-  manaCost: 10
+  manaCost: 4.5
   onCd: 0
 --- !u!114 &8065503282958894922
 MonoBehaviour:
@@ -102,8 +115,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
+  manaCost: 5
+  onCd: 0
+--- !u!114 &793945254273041517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426162995986342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea14fda856fbb264ba99dabde2a5bb68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 7
+  manaCost: 7
+  onCd: 0
+--- !u!114 &6268315008357011686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426162995986342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163dd3dbff9c46746a146c72ad472185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  manaCost: 3
+  onCd: 0
+--- !u!114 &424311988383748299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426162995986342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952b037826185c44a94e0b18e24f9f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 15
   manaCost: 15
   onCd: 0
+  chargeTime: 1
+  book: {fileID: 0}
+--- !u!114 &4917793820685682637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426162995986342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec209eaad3ebd5145b72981dea969308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 5
+  manaCost: 10
+  onCd: 0
+--- !u!114 &-7763301393077371188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426162995986342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6052900921fd81946b381a72af8c7b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 20
+  manaCost: 10
+  onCd: 0
+  duration: 5
+  obscureObject: {fileID: 3861823641585761491, guid: ce5c0cd1508dbb442b1d8986cbf9a04d, type: 3}
+  book: {fileID: 0}
 --- !u!114 &4243669311251762949
 MonoBehaviour:
   m_ObjectHideFlags: 0

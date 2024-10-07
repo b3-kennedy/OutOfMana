@@ -10,6 +10,7 @@ public class PlayerManager : NetworkBehaviour
 
     public NetworkVariable<Color> playerColour = new NetworkVariable<Color>();
     [HideInInspector] public Vector3 dir;
+    public Vector3 otherPos;
 
     public override void OnNetworkSpawn()
     {
@@ -19,6 +20,7 @@ public class PlayerManager : NetworkBehaviour
             playerColour.Value = Color.red;
             GetComponent<SpriteRenderer>().color = playerColour.Value;
             transform.position = new Vector3(-7.19f, -2.6f, 0f);
+            otherPos = new Vector3(7.19f, -2.6f, 0f);
             dir = Vector3.right;
         }
         else
@@ -26,6 +28,7 @@ public class PlayerManager : NetworkBehaviour
             playerColour.Value = Color.blue;
             GetComponent<SpriteRenderer>().color = playerColour.Value;
             transform.position = new Vector3(7.19f, -2.6f, 0f);
+            otherPos = new Vector3(-7.19f, -2.6f, 0f);
             transform.rotation = Quaternion.Euler(0, 180f, 0);
             Destroy(GetComponent<PingHolder>());
             dir = Vector3.left;

@@ -1,3 +1,4 @@
+
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,11 @@ public class SpellManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    public override void OnNetworkSpawn()
+    {
     }
 
     // Update is called once per frame
@@ -51,16 +56,19 @@ public class SpellManager : NetworkBehaviour
         if (Input.GetKeyDown(orb1Key))
         {
             SpawnOrb1ServerRpc(orbIndex.Value);
+            
         }
 
         if (Input.GetKeyDown(orb2Key))
         {
             SpawnOrb2ServerRpc(orbIndex.Value);
+            
         }
 
         if (Input.GetKeyDown(orb3Key))
         {
             SpawnOrb3ServerRpc(orbIndex.Value);
+            
         }
 
         if (Input.GetKeyDown(castKey) && orbs[0].orbObj != null)
@@ -115,9 +123,10 @@ public class SpellManager : NetworkBehaviour
         {
             Destroy(orbs[orbIndex.Value].orbObj);
         }
-       
+
         orbs[orbI].orbObj = Instantiate(orb1, orbs[orbIndex.Value].orbPos.position, Quaternion.identity);
         orbs[orbI].orbObj.GetComponent<NetworkObject>().Spawn();
+
         SetOrbClientRpc(orbs[orbI].orbObj.GetComponent<NetworkObject>().NetworkObjectId, orbI);
         orbIndex.Value++;
     }
@@ -134,7 +143,7 @@ public class SpellManager : NetworkBehaviour
         {
             Destroy(orbs[orbIndex.Value].orbObj);
         }
-        
+
         orbs[orbI].orbObj = Instantiate(orb2, orbs[orbIndex.Value].orbPos.position, Quaternion.identity);
         orbs[orbI].orbObj.GetComponent<NetworkObject>().Spawn();
         SetOrbClientRpc(orbs[orbI].orbObj.GetComponent<NetworkObject>().NetworkObjectId, orbI);
@@ -152,7 +161,7 @@ public class SpellManager : NetworkBehaviour
         if (orbs[orbIndex.Value].orbObj != null)
         {
             Destroy(orbs[orbIndex.Value].orbObj);
-        }      
+        }
         orbs[orbI].orbObj = Instantiate(orb3, orbs[orbIndex.Value].orbPos.position, Quaternion.identity);
         orbs[orbI].orbObj.GetComponent<NetworkObject>().Spawn();
         SetOrbClientRpc(orbs[orbI].orbObj.GetComponent<NetworkObject>().NetworkObjectId, orbI);

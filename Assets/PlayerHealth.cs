@@ -28,6 +28,19 @@ public class PlayerHealth : NetworkBehaviour
         TakeDamageServerRpc(dmg);
     }
 
+    public void GainHealth(float health)
+    {
+        if (IsServer)
+        {
+            currentHealth.Value += health;
+            if(currentHealth.Value > maxHealth)
+            {
+                currentHealth.Value = maxHealth;
+            }
+        }
+        GainHealthServerRpc(health);
+    }
+
     private void Update()
     {
         if (healthBarRect.localScale.x != healthPercentage.Value)
@@ -39,7 +52,8 @@ public class PlayerHealth : NetworkBehaviour
     //fix client error
     void UpdateBar()
     {
-        healthBarRect.localScale = new Vector3(healthPercentage.Value, healthBarRect.localScale.y, healthBarRect.localScale.z);
+        float value = Mathf.Lerp(healthBarRect.localScale.x, healthPercentage.Value, 10 * Time.deltaTime);
+        healthBarRect.localScale = new Vector3(value, healthBarRect.localScale.y, healthBarRect.localScale.z);
     }
 
 
@@ -53,13 +67,13 @@ public class PlayerHealth : NetworkBehaviour
     public void UpdateHealthBarClientRpc()
     {
         healthPercentage.Value = currentHealth.Value / maxHealth;
-        healthBarRect.localScale = new Vector3(healthPercentage.Value, healthBarRect.localScale.y, healthBarRect.localScale.z);
     }
 
 
     [ServerRpc(RequireOwnership = false)]
     public void GainHealthServerRpc(float heal)
     {
-        currentHealth.Value += heal;
+        UpdateHealthBarClientRpc();
     }
+
 }

@@ -23,8 +23,25 @@ public class PlayerMana : NetworkBehaviour
         if (IsServer)
         {
             currentMana.Value -= dmg;
+            if(currentMana.Value < 0)
+            {
+                currentMana.Value = 0;
+            }
         }
        UseManaServerRpc(dmg);
+    }
+
+    public void GainMana(float mana)
+    {
+        if (IsServer)
+        {
+            currentMana.Value += mana;
+            if(currentMana.Value > maxMana)
+            {
+                currentMana.Value = maxMana;
+            }
+        }
+        GainManaServerRpc(mana);
     }
 
     private void Update()
@@ -33,12 +50,15 @@ public class PlayerMana : NetworkBehaviour
         {
             UpdateBar();
         }
+
+
     }
 
     //fix client error
     void UpdateBar()
     {
-        manaBarRect.localScale = new Vector3(manaPercentage.Value, manaBarRect.localScale.y, manaBarRect.localScale.z);
+        float value = Mathf.Lerp(manaBarRect.localScale.x, manaPercentage.Value, 10 * Time.deltaTime);
+        manaBarRect.localScale = new Vector3(value, manaBarRect.localScale.y, manaBarRect.localScale.z);
     }
 
 
@@ -51,14 +71,14 @@ public class PlayerMana : NetworkBehaviour
     [ClientRpc]
     public void UpdateManaBarClientRpc()
     {
+        
         manaPercentage.Value = currentMana.Value / maxMana;
-        manaBarRect.localScale = new Vector3(manaPercentage.Value, manaBarRect.localScale.y, manaBarRect.localScale.z);
     }
 
 
     [ServerRpc(RequireOwnership = false)]
-    public void GainGainServerRpc(float heal)
+    public void GainManaServerRpc(float mana)
     {
-        currentMana.Value += heal;
+        UpdateManaBarClientRpc();
     }
 }

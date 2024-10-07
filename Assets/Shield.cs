@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class Shield : NetworkBehaviour
 {
-    public GameObject owner;
+    [HideInInspector] public GameObject owner;
     public float destroyTime;
 
     // Start is called before the first frame update

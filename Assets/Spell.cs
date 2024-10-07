@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Spell : MonoBehaviour
+public class Spell : NetworkBehaviour
 {
     public float cooldown;
     public float manaCost;
@@ -11,6 +12,7 @@ public class Spell : MonoBehaviour
 
     private void Update()
     {
+        SpellUpdate();
         if (onCd)
         {
             cdTimer += Time.deltaTime;
@@ -21,6 +23,8 @@ public class Spell : MonoBehaviour
             }
         }
     }
+
+    public virtual void SpellUpdate() { }
 
 
 }

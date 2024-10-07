@@ -21,11 +21,18 @@ public class ShieldsArrayElement
 public class DefaultSpellBook : SpellBook
 {
 
+    
+
     public ProjectilesArrayElement[] projectiles;
     public ShieldsArrayElement[] shields;
     DefaultEEE eee;
     DefaultWWW www;
     DefaultQWE qwe;
+    DefaultQQQ qqq;
+    DefaultEEW eew;
+    DefaultWWE eww;
+    DefaultQWW qww;
+    DefaultQQE qqe;
 
 
     private void Start()
@@ -33,13 +40,19 @@ public class DefaultSpellBook : SpellBook
         eee = GetComponent<DefaultEEE>();
         www = GetComponent<DefaultWWW>();
         qwe = GetComponent<DefaultQWE>();
+        qqq = GetComponent<DefaultQQQ>();
+        eew = GetComponent<DefaultEEW>(); 
+        eww = GetComponent<DefaultWWE>();
+        qww = GetComponent<DefaultQWW>();
+        qqe = GetComponent<DefaultQQE>();
+
     }
 
     public override void EEE()
     {
         if (!eee.onCd)
         {
-            SpawnProjectileServerRpc(0);
+            SpawnProjectileServerRpc(0,0,0);
             player.GetComponent<PlayerMana>().UseMana(eee.manaCost);
             eee.onCd = true;
 
@@ -51,7 +64,7 @@ public class DefaultSpellBook : SpellBook
     {
         if (!www.onCd)
         {
-            SpawnProjectileServerRpc(1);
+            SpawnProjectileServerRpc(1,0,0);
             player.GetComponent<PlayerMana>().UseMana(www.manaCost);
             www.onCd = true;
         }
@@ -69,18 +82,76 @@ public class DefaultSpellBook : SpellBook
         
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    void SpawnProjectileServerRpc(int index)
+    public override void QQQ()
     {
-        SpawnProjectileClientRpc(index);
+        if (!qqq.onCd)
+        {
+            SpawnShieldServerRpc(1);
+            player.GetComponent<PlayerMana>().UseMana(qqq.manaCost);
+            qqq.onCd = true;
+        }
+    }
+
+    public override void EEW()
+    {
+        if (!eew.onCd)
+        {
+            SpawnProjectileServerRpc(2,0,0);
+            player.GetComponent<PlayerMana>().UseMana(eew.manaCost);
+            eew.onCd = true;
+        }
+    }
+
+    public override void EWW()
+    {
+        if (!eww.onCd)
+        {
+            eww.book = this;
+            eww.BeginCharge();
+            player.GetComponent<PlayerMana>().UseMana(eww.manaCost);
+            eww.onCd = true;
+        }
+    }
+
+    public override void QWW()
+    {
+        if (!qww.onCd)
+        {
+            SpawnProjectileServerRpc(4,0,0);
+        }
+    }
+
+    public override void QQE()
+    {
+        if (!qqe.onCd)
+        {
+            qqe.book = this;
+            qqe.OnActivate();
+            qqe.onCd = true;
+        }
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SpawnProjectileServerRpc(int index, float offsetX, float offsetY)
+    {
+        SpawnProjectileClientRpc(index, offsetX, offsetY);
     }
 
     [ClientRpc]
-    void SpawnProjectileClientRpc(int index)
+    void SpawnProjectileClientRpc(int index, float offsetX, float offsetY)
     {
-        var proj = Instantiate(projectiles[index].prefab, player.GetComponent<SpellManager>().projectileSpawn.position, Quaternion.identity);
-        proj.GetComponent<Projectile>().dir = player.GetComponent<PlayerManager>().dir;
-        proj.GetComponent<Projectile>().owner = player.gameObject;
+        var proj = Instantiate(projectiles[index].prefab, player.GetComponent<SpellManager>().projectileSpawn.position + new Vector3(offsetX, offsetY), Quaternion.identity);
+        if (proj.GetComponent<Projectile>())
+        {
+            proj.GetComponent<Projectile>().dir = player.GetComponent<PlayerManager>().dir;
+            proj.GetComponent<Projectile>().owner = player.gameObject;
+        }
+        else if (proj.GetComponent<ArcingProjectile>())
+        {
+            proj.GetComponent<ArcingProjectile>().owner = player.gameObject;
+        }
+
     }
 
     [ServerRpc(RequireOwnership = false)]

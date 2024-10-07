@@ -544,9 +544,9 @@ GameObject:
   - component: {fileID: 8623187858351287768}
   - component: {fileID: 6353776451969430036}
   - component: {fileID: 3071636106994591629}
+  - component: {fileID: 8959073702450119611}
   - component: {fileID: 7212278060918193492}
   - component: {fileID: 8827113560163324167}
-  - component: {fileID: 8959073702450119611}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -661,6 +661,7 @@ MonoBehaviour:
   playerColour:
     m_InternalValue: {r: 0, g: 0, b: 0, a: 0}
   dir: {x: 0, y: 0, z: 0}
+  otherPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8623187858351287768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,6 +691,7 @@ MonoBehaviour:
   - orbObj: {fileID: 0}
     orbPos: {fileID: 8484262405407426944}
   book: {fileID: 7803741109029153287, guid: 8099c16eecc338649a2c600bd3cfc017, type: 3}
+  orbParent: {fileID: 2167790003663244469, guid: e966778d5d748c94090eabd4cd64b9eb, type: 3}
   orbIndex:
     m_InternalValue: 0
 --- !u!114 &6353776451969430036
@@ -723,6 +725,24 @@ MonoBehaviour:
   healthPercentage:
     m_InternalValue: 0
   healthBar: {fileID: 4302414374435862214}
+--- !u!114 &8959073702450119611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541580639159920983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238d0c86a8cfb364ca95b0dab1d9e382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 100
+  currentMana:
+    m_InternalValue: 0
+  manaPercentage:
+    m_InternalValue: 1
+  manaBar: {fileID: 2168944435146446744}
 --- !u!50 &7212278060918193492
 Rigidbody2D:
   serializedVersion: 4
@@ -795,21 +815,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8959073702450119611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8541580639159920983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 238d0c86a8cfb364ca95b0dab1d9e382, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMana: 100
-  currentMana:
-    m_InternalValue: 0
-  manaPercentage:
-    m_InternalValue: 1
-  manaBar: {fileID: 2168944435146446744}

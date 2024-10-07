@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.VisualScripting;
+using System;
 
 public class Projectile : NetworkBehaviour
 {
@@ -51,6 +53,27 @@ public class Projectile : NetworkBehaviour
         }
     }
 
+    void ApplyDebuff(GameObject other)
+    {
+        if (GetComponent<BurnDOT>())
+        {
+            var burn = other.AddComponent<BurnDOT>();
+            burn.duration = GetComponent<BurnDOT>().duration;
+            burn.burnInterval = GetComponent<BurnDOT>().burnInterval;
+            burn.burnDamage = GetComponent<BurnDOT>().burnDamage;
+            other.GetComponent<BurnDOT>().Apply();
+
+        }
+        else if (GetComponent<ManaLeech>())
+        {
+            var manaLeech = other.AddComponent<ManaLeech>();
+            manaLeech.duration = 1f;
+            manaLeech.manaAmount = GetComponent<ManaLeech>().manaAmount;
+            manaLeech.owner = owner;
+            manaLeech.Apply();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerHealth>())
@@ -58,6 +81,12 @@ public class Projectile : NetworkBehaviour
             Debug.Log("hit");
             var health = other.GetComponent<PlayerHealth>();
             health.TakeDamage(damage);
+
+            if (GetComponent<Debuff>())
+            {
+                ApplyDebuff(other.gameObject);
+            }
+
             Destroy(gameObject);
         }
         else if (other.GetComponent<Projectile>())
