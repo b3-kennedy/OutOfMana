@@ -23,7 +23,6 @@ public class Projectile : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ping = PingHolder.Instance.ping;
-        Debug.Log((ping / 1000f) / 2f);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
@@ -78,7 +77,6 @@ public class Projectile : NetworkBehaviour
     {
         if (other.GetComponent<PlayerHealth>())
         {
-            Debug.Log("hit");
             var health = other.GetComponent<PlayerHealth>();
             health.TakeDamage(damage);
 

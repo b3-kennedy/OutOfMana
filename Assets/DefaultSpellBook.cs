@@ -50,7 +50,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void EEE()
     {
-        if (!eee.onCd)
+        if (!eee.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= eee.manaCost)
         {
             SpawnProjectileServerRpc(0,0,0);
             player.GetComponent<PlayerMana>().UseMana(eee.manaCost);
@@ -62,7 +62,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void WWW()
     {
-        if (!www.onCd)
+        if (!www.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= www.manaCost)
         {
             SpawnProjectileServerRpc(1,0,0);
             player.GetComponent<PlayerMana>().UseMana(www.manaCost);
@@ -73,7 +73,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void QWE()
     {
-        if (!qwe.onCd)
+        if (!qwe.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= qwe.manaCost)
         {
             SpawnShieldServerRpc(0);
             player.GetComponent<PlayerMana>().UseMana(qwe.manaCost);
@@ -84,7 +84,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void QQQ()
     {
-        if (!qqq.onCd)
+        if (!qqq.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= qqq.manaCost)
         {
             SpawnShieldServerRpc(1);
             player.GetComponent<PlayerMana>().UseMana(qqq.manaCost);
@@ -94,7 +94,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void EEW()
     {
-        if (!eew.onCd)
+        if (!eew.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= eew.manaCost)
         {
             SpawnProjectileServerRpc(2,0,0);
             player.GetComponent<PlayerMana>().UseMana(eew.manaCost);
@@ -104,7 +104,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void EWW()
     {
-        if (!eww.onCd)
+        if (!eww.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= eww.manaCost)
         {
             eww.book = this;
             eww.BeginCharge();
@@ -115,7 +115,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void QWW()
     {
-        if (!qww.onCd)
+        if (!qww.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= qww.manaCost)
         {
             SpawnProjectileServerRpc(4,0,0);
         }
@@ -123,7 +123,7 @@ public class DefaultSpellBook : SpellBook
 
     public override void QQE()
     {
-        if (!qqe.onCd)
+        if (!qqe.onCd && player.GetComponent<PlayerMana>().currentMana.Value >= qqe.manaCost)
         {
             qqe.book = this;
             qqe.OnActivate();
