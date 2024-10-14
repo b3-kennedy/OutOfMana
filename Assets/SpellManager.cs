@@ -17,6 +17,8 @@ public class SpellManager : NetworkBehaviour
 {
     public GameObject projectile;
     public Transform projectileSpawn;
+    public Transform minionSpawn;
+
     GameObject proj;
 
     public KeyCode orb1Key;
@@ -39,6 +41,21 @@ public class SpellManager : NetworkBehaviour
 
     int localOrbIndex;
 
+    public NetworkVariable<bool> canCast;
+
+    public GameObject eeeIcon;
+    public GameObject qqqIcon;
+    public GameObject wwwIcon;
+    public GameObject qqeIcon;
+    public GameObject qqwIcon;
+    public GameObject wweIcon;
+    public GameObject wwqIcon;
+    public GameObject eewIcon;
+    public GameObject eeqIcon;
+    public GameObject qweIcon;
+
+    public Transform iconParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,14 +64,18 @@ public class SpellManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        canCast.Value = true;
+
+        if (!IsOwner)
+        {
+            iconParent.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsOwner) return;
-
-
+        if (!IsOwner || !canCast.Value) return;
 
         if (Input.GetKeyDown(orb1Key))
         {
@@ -85,7 +106,7 @@ public class SpellManager : NetworkBehaviour
         }
     }
 
-    void ClearLocalOrbs()
+    public void ClearLocalOrbs()
     {
         for (int i = 0; i < orbs.Length; i++)
         {
@@ -149,8 +170,8 @@ public class SpellManager : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
-    void ClearServerOrbsServerRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void ClearServerOrbsServerRpc()
     {
         foreach (var orb in serverOrbs)
         {

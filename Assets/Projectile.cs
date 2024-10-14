@@ -71,6 +71,11 @@ public class Projectile : NetworkBehaviour
             manaLeech.owner = owner;
             manaLeech.Apply();
         }
+        else if (GetComponent<Stun>())
+        {
+            var stun = other.AddComponent<Stun>();
+            stun.duration = GetComponent<Stun>().duration;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

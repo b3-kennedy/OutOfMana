@@ -41,6 +41,17 @@ public class PlayerHealth : NetworkBehaviour
         GainHealthServerRpc(health);
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void GainHealthFromPotionServerRpc(float health)
+    {
+        currentHealth.Value += health;
+        if (currentHealth.Value > maxHealth)
+        {
+            currentHealth.Value = maxHealth;
+        }
+        GainHealthServerRpc(health);
+    }
+
     private void Update()
     {
         if (healthBarRect.localScale.x != healthPercentage.Value)

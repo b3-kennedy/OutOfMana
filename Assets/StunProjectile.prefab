@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -175568583604271018}
   - component: {fileID: 7191500364701415541}
   - component: {fileID: -2350344065577445022}
-  - component: {fileID: 4522473244886705565}
+  - component: {fileID: 6428754281058489852}
   m_Layer: 0
-  m_Name: ManaLeechProjectile
+  m_Name: StunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.08991361, b: 1, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  priority: 1
-  damage: 0
-  force: 20
+  priority: 2
+  damage: 5
+  force: 15
   dir: {x: 0, y: 0, z: 0}
 --- !u!50 &-175568583604271018
 Rigidbody2D:
@@ -188,7 +188,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &4522473244886705565
+--- !u!114 &6428754281058489852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,9 +197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3867830314273112763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db89e8d1419a9044a8cc670080b91ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f4f0082732f05d444839e18633cf7fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
-  manaAmount: 25
-  owner: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpellBook : NetworkBehaviour
 {
     public Transform player;
-
+    public PlayerMana mana;
     public NetworkVariable<ulong> playerId = new NetworkVariable<ulong>();
 
     private void Update()
@@ -19,9 +19,14 @@ public class SpellBook : NetworkBehaviour
             {
                 // Assign the player's Transform if the NetworkObject was found
                 player = playerNetworkObject.transform;
+                mana = player.GetComponent<PlayerMana>();
             }
         }
+
+        BookUpdate();
     }
+
+    public virtual void BookUpdate() { }
 
 
     public virtual void QQQ()
