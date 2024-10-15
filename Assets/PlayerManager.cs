@@ -33,6 +33,8 @@ public class PlayerManager : NetworkBehaviour
             for (int i = 0; i < slotParent.childCount; i++)
             {
                 slotParent.GetChild(i).GetComponent<Slot>().player = gameObject;
+                slotParent.GetChild(i).GetComponent<Slot>().slotIndex = i;
+                slotParent.GetChild(i).GetComponent<Slot>().playerId = 0;
             }
 
         }
@@ -52,6 +54,8 @@ public class PlayerManager : NetworkBehaviour
             for (int i = 0; i < slotParent.childCount; i++)
             {
                 slotParent.GetChild(i).GetComponent<Slot>().player = gameObject;
+                slotParent.GetChild(i).GetComponent<Slot>().slotIndex = i;
+                slotParent.GetChild(i).GetComponent<Slot>().playerId = 1;
             }
 
             //slots.GetComponent<RectTransform>().localPosition = new Vector2(296, -350); right

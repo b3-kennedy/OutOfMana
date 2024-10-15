@@ -27,4 +27,19 @@ public class ItemManager : NetworkBehaviour
     {
         
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void UseItemServerRpc(int slotIndex, int ownerIndex)
+    {
+        UseItemClientRpc(slotIndex, ownerIndex);
+    }
+
+    [ClientRpc]
+    void UseItemClientRpc(int slotIndex, int ownerIndex)
+    {
+        var parent = GameManager.Instance.itemCanvas.transform.GetChild(0);
+        Debug.Log(parent.GetChild(ownerIndex).GetChild(1).GetChild(slotIndex).name);
+        parent.GetChild(ownerIndex).GetChild(1).GetChild(slotIndex).GetComponent<Slot>().item = null;
+        parent.GetChild(ownerIndex).GetChild(1).GetChild(slotIndex).GetComponent<Slot>().slotIcon.sprite = null;
+    }
 }

@@ -9,7 +9,9 @@ public class Slot : MonoBehaviour
 {
     public GameObject player;
     public Item item;
-    Image slotIcon;
+    public Image slotIcon;
+    public int slotIndex;
+    public int playerId;
 
     void Start()
     {
@@ -32,10 +34,11 @@ public class Slot : MonoBehaviour
         if(item != null)
         {
             item.Use();
-            slotIcon.sprite = null;
+            player.GetComponent<ItemManager>().UseItemServerRpc(slotIndex, playerId);
         }
         
     }
+
 
 
 }
