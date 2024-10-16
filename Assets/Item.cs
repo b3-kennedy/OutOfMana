@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Sprite icon;
-    public GameObject player;
+    [HideInInspector] public GameObject player;
     public virtual void Use() { }
 }

@@ -22,7 +22,7 @@ public class ShieldsArrayElement
 public class DefaultSpellBook : SpellBook
 {
 
-    
+
 
     public ProjectilesArrayElement[] projectiles;
     public ShieldsArrayElement[] shields;
@@ -53,6 +53,20 @@ public class DefaultSpellBook : SpellBook
         qqe = GetComponent<DefaultQQE>();
         qqw = GetComponent<DefaultQQW>();
         qee = GetComponent<DefaultEEQ>();
+
+        spells.Add(eee);
+        spells.Add(www);
+        spells.Add(qwe);
+        spells.Add(qqq);
+        spells.Add(eew);
+        spells.Add(eww);
+        spells.Add(qww);
+        spells.Add(qqe);
+        spells.Add(qqw);
+        spells.Add(qee);
+
+
+
 
         
     }
@@ -96,6 +110,7 @@ public class DefaultSpellBook : SpellBook
             SpawnProjectileServerRpc(0,0,0);
             player.GetComponent<PlayerMana>().UseMana(eee.manaCost);
             eee.onCd.Value = true;
+            SetLastUsedSpellServerRpc(0);
 
         }
         
@@ -108,6 +123,7 @@ public class DefaultSpellBook : SpellBook
             SpawnProjectileServerRpc(1,0,0);
             player.GetComponent<PlayerMana>().UseMana(www.manaCost);
             www.onCd.Value = true;
+            SetLastUsedSpellServerRpc(1);
         }
         
     }
@@ -119,6 +135,7 @@ public class DefaultSpellBook : SpellBook
             SpawnShieldServerRpc(0);
             player.GetComponent<PlayerMana>().UseMana(qwe.manaCost);
             qwe.onCd.Value = true;
+            SetLastUsedSpellServerRpc(2);
         }
         
     }
@@ -130,6 +147,7 @@ public class DefaultSpellBook : SpellBook
             SpawnShieldServerRpc(1);
             player.GetComponent<PlayerMana>().UseMana(qqq.manaCost);
             qqq.onCd.Value = true;
+            SetLastUsedSpellServerRpc(3);
         }
     }
 
@@ -140,6 +158,7 @@ public class DefaultSpellBook : SpellBook
             SpawnProjectileServerRpc(2,0,0);
             player.GetComponent<PlayerMana>().UseMana(eew.manaCost);
             eew.onCd.Value = true;
+            SetLastUsedSpellServerRpc(4);
         }
     }
 
@@ -151,6 +170,7 @@ public class DefaultSpellBook : SpellBook
             eww.BeginCharge();
             player.GetComponent<PlayerMana>().UseMana(eww.manaCost);
             eww.onCd.Value = true;
+            SetLastUsedSpellServerRpc(5);
         }
     }
 
@@ -161,6 +181,7 @@ public class DefaultSpellBook : SpellBook
             SpawnProjectileServerRpc(4,0,0);
             player.GetComponent<PlayerMana>().UseMana(qww.manaCost);
             qww.onCd.Value = true;
+            SetLastUsedSpellServerRpc(6);
         }
     }
 
@@ -171,6 +192,7 @@ public class DefaultSpellBook : SpellBook
             qqe.book = this;
             qqe.OnActivate();
             qqe.onCd.Value = true;
+            SetLastUsedSpellServerRpc(7);
         }
     }
 
@@ -181,6 +203,7 @@ public class DefaultSpellBook : SpellBook
             SpawnProjectileServerRpc(5, 0, 0);
             player.GetComponent<PlayerMana>().UseMana(qqw.manaCost);
             qqw.onCd.Value = true;
+            SetLastUsedSpellServerRpc(8);
         }
     }
 
@@ -192,6 +215,7 @@ public class DefaultSpellBook : SpellBook
             qee.SpawnMinion();
             player.GetComponent<PlayerMana>().UseMana(qee.manaCost);
             qee.onCd.Value = true;
+            SetLastUsedSpellServerRpc(9);
         }
     }
 

@@ -21,7 +21,7 @@ public class DefaultWWE : Spell
             timer += Time.deltaTime;
             if (timer > chargeTime)
             {
-                if(book.player.GetComponent<SpriteRenderer>().color == Color.blue)
+                if (book.player.GetComponent<SpriteRenderer>().color == Color.blue)
                 {
                     book.SpawnProjectileServerRpc(3, -0.5f, 0);
                 }

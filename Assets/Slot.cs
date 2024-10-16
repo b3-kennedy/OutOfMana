@@ -7,11 +7,11 @@ using Unity.Netcode;
 
 public class Slot : MonoBehaviour
 {
-    public GameObject player;
+    [HideInInspector] public GameObject player;
     public Item item;
-    public Image slotIcon;
-    public int slotIndex;
-    public int playerId;
+    [HideInInspector] public Image slotIcon;
+    [HideInInspector] public int slotIndex;
+    [HideInInspector] public int playerId;
 
     void Start()
     {

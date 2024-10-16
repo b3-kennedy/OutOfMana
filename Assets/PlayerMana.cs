@@ -44,6 +44,17 @@ public class PlayerMana : NetworkBehaviour
         GainManaServerRpc(mana);
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void GainManaFromPotionServerRpc(float mana)
+    {
+        currentMana.Value += mana;
+        if (currentMana.Value > maxMana)
+        {
+            currentMana.Value = maxMana;
+        }
+        GainManaServerRpc(mana);
+    }
+
     private void Update()
     {
         if (manaBarRect.localScale.x != manaPercentage.Value)

@@ -59,6 +59,8 @@ MonoBehaviour:
   mana: {fileID: 0}
   playerId:
     m_InternalValue: 0
+  spells: []
+  lastUsedSpell: {fileID: 0}
   projectiles:
   - projName: FireBall(EEE)
     prefab: {fileID: 3867830314273112763, guid: 921c5bd33ca51524a9ecc1f96e971f86, type: 3}
@@ -91,7 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   manaCost: 3
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &646091644581045040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +111,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 4
   manaCost: 4.5
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &8065503282958894922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   manaCost: 5
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &793945254273041517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 7
   manaCost: 7
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &6268315008357011686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 4
   manaCost: 3
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &424311988383748299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 15
   manaCost: 15
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
   chargeTime: 1
   book: {fileID: 0}
 --- !u!114 &4917793820685682637
@@ -183,7 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   manaCost: 10
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &-7763301393077371188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 20
   manaCost: 10
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
   duration: 5
   obscureObject: {fileID: 3861823641585761491, guid: ce5c0cd1508dbb442b1d8986cbf9a04d, type: 3}
   book: {fileID: 0}
@@ -216,7 +242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   manaCost: 10
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
 --- !u!114 &1089421110921545139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +260,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 20
   manaCost: 20
-  onCd: 0
+  icon: {fileID: 0}
+  cdText: {fileID: 0}
+  onCd:
+    m_InternalValue: 0
   player: {fileID: 0}
   minion: {fileID: 1377270799308589844, guid: 18c99c62b5416264685e6387bbc58618, type: 3}
 --- !u!114 &4243669311251762949
@@ -246,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2466791918
+  GlobalObjectIdHash: 951099334
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0

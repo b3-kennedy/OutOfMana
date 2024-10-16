@@ -3316,7 +3316,6 @@ MonoBehaviour:
   otherPos: {x: 0, y: 0, z: 0}
   playerCanvas: {fileID: 5900861497782927972}
   itemSlots: {fileID: 6847938250166920386, guid: 7b18ae3d84f0c2c4e8686270ef78e166, type: 3}
-  itemCanvas: {fileID: 0}
 --- !u!114 &8623187858351287768
 MonoBehaviour:
   m_ObjectHideFlags: 0

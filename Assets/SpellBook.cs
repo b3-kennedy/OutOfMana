@@ -8,7 +8,9 @@ public class SpellBook : NetworkBehaviour
     public Transform player;
     public PlayerMana mana;
     public NetworkVariable<ulong> playerId = new NetworkVariable<ulong>();
-
+    public List<Spell> spells;
+    public Spell lastUsedSpell;
+    
     private void Update()
     {
         // Check if we are on the client and the player has not been assigned
@@ -19,12 +21,28 @@ public class SpellBook : NetworkBehaviour
             {
                 // Assign the player's Transform if the NetworkObject was found
                 player = playerNetworkObject.transform;
+                player.GetComponent<SpellManager>().book = this;
                 mana = player.GetComponent<PlayerMana>();
             }
         }
 
         BookUpdate();
     }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetLastUsedSpellServerRpc(int index)
+    {
+        SetLastUsedSpellClientRpc(index);
+    }
+
+    [ClientRpc]
+    public void SetLastUsedSpellClientRpc(int index)
+    {
+        lastUsedSpell = spells[index];
+    }
+
+
 
     public virtual void BookUpdate() { }
 
